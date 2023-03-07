@@ -1,30 +1,32 @@
 <template>
-  <div id="container">
-    <div class="form">
-      <div class="loginBox">
-        <h1>Log in</h1>
-        <form action="">
-          <label>Username</label>
-          <input type="email" name="" id="">
-          <label>Password</label>
-          <input type="password" name="" id="">
-          <button class="button">Log in</button>
-        </form>
-        <h2>You don't have an account?<router-link to="/register">Sign up</router-link></h2>
-      </div>
-    </div>
+    <div id="container">
+        <div class="form">
+            <div class="signUpBox">
+                <h1>Sign up</h1>
+                <form action="">
+                <label>Username</label>
+                <input type="email" name="" id="">
+                <label>Password</label>
+                <input type="password" name="" id="">
+                <label>Confirm password</label>
+                <input type="password" name="" id="">
+                <button class="button">Sign up</button>
+                </form>
+                
+            </div>
+        </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
-
 export default {
- 
+    data(){
+        return{
+            
+        }
+    },
 }
 </script>
-
 
 <style scoped>
 
@@ -52,19 +54,19 @@ export default {
   margin-bottom: 60px;
 }
 
-.loginBox{
+.signUpBox{
   padding: 35px;
   height: 100%;
   width: 75%;
   margin: 0 auto;
 }
 
-.loginBox label{
+.signUpBox label{
   text-align: left;
   width: 100%;
   font-size: 17px;
 }
-.loginBox input{
+.signUpBox input{
   background-color: #D9D9D9;
   border: none;
   height: 30px;
@@ -74,7 +76,7 @@ export default {
   margin-top: 15px;
   margin-bottom: 25px;
 }
-.loginBox input:focus{
+.signUpBox input:focus{
   outline-color: #6100FF;
 }
 .button{
@@ -98,16 +100,15 @@ export default {
 h2{
   font-size: 16px;
 }
-.loginBox a{
+.signUpBox a{
   text-decoration: none;
   color: #6100FF;
   font-size: 16px;
   padding-left: 5px;
 }
 
-.loginBox a:hover{
+.signUpBox a:hover{
   text-decoration: underline;
 }
-
 
 </style>
