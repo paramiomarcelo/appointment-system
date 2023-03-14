@@ -4,13 +4,13 @@
       <div class="loginBox">
         <h1>Log in</h1>
         <form action="">
-          <label>Username</label>
-          <input type="email" name="" id="">
+          <label>E-mail</label>
+          <input type="email" placeholder="Enter your email">
           <label>Password</label>
-          <input type="password" name="" id="">
+          <input type="password" name="" id="" placeholder="Enter your password">
           <button class="button">Log in</button>
         </form>
-        <h2>You don't have an account?<router-link to="/register">Sign up</router-link></h2>
+        <router-link :to="{name: 'register'}" class="link">You don't have an account?</router-link>
       </div>
     </div>
   </div>
@@ -95,14 +95,12 @@ export default {
   cursor: pointer;
 }
 
-h2{
-  font-size: 16px;
-}
-.loginBox a{
+.link{
   text-decoration: none;
   color: #6100FF;
   font-size: 16px;
-  padding-left: 5px;
+  display:block;
+  text-align: center;
 }
 
 .loginBox a:hover{

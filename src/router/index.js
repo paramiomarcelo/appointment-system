@@ -4,14 +4,24 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'login',
     component: HomeView
   },
   {
     path:'/register',
-    name:'register-page',
+    name:'register',
     component: () => import('../views/Register.vue')
-  }
+  },
+  {
+    path: '/:id',
+    name: 'app-page',
+    component:() => import(/* webpackChunkName: "daybook-noentry" */ '../components/Appointment.vue'),
+    props:(route) => {
+        return {
+            id: route.params.id
+        }
+    }
+}
   /*{
     path: '/about',
     name: 'about',

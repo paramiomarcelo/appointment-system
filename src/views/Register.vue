@@ -3,29 +3,59 @@
         <div class="form">
             <div class="signUpBox">
                 <h1>Sign up</h1>
-                <form action="">
-                <label>Username</label>
-                <input type="email" name="" id="">
-                <label>Password</label>
-                <input type="password" name="" id="">
-                <label>Confirm password</label>
-                <input type="password" name="" id="">
-                <button class="button">Sign up</button>
+                <form action="" @submit.prevent="submit">
+                  <label>E-mail</label>
+                  <input type="email" name="" id="" v-model="userName" placeholder="Enter your email">
+                  <label>Password</label>
+                  <input type="password" name="" id="" v-model="password" placeholder="Enter your password">
+                  <label>Confirm password</label>
+                  <input type="password" name="" id="" v-model="confirmPassword" placeholder="Confirm your password">
+                  <button class="button" type="submit">Sign up</button>
+                  <router-link :to="{name: 'login'}" class="link">You have an account?</router-link>
                 </form>
-                
             </div>
         </div>
   </div>
 </template>
 
 <script>
+import authApi from '../api/authApi'
+
 export default {
     data(){
         return{
-            
+            userName: null,
+            password: null,
+            confirmPassword: null,
         }
     },
+
+    methods:{
+      /*register(){
+        if(this.password && this.confirmPassword && this.password=== this.confirmPassword){     to do: validar la contraseña
+            this.validation = true
+
+        }*/
+      async submit(){
+        const dataToSave = {
+          email: this.userName,
+          password: this.password,
+          returnSecureToken: true
+        }
+        try {
+          await authApi.post(':signUp',dataToSave)
+          this.$router.push({name: 'login'})
+        } catch (error) {
+          console.log(error.response)
+        }
+        
+        //this.$router.push({name: 'app-page', params: {id: 'hola'}})
+      }
+
+    },
 }
+
+
 </script>
 
 <style scoped>
@@ -97,18 +127,18 @@ export default {
   cursor: pointer;
 }
 
-h2{
-  font-size: 16px;
-}
-.signUpBox a{
+.link{
   text-decoration: none;
   color: #6100FF;
   font-size: 16px;
-  padding-left: 5px;
+  display:block;
+  text-align: center;
 }
 
 .signUpBox a:hover{
   text-decoration: underline;
 }
-
+.material-symbols-outlined{
+  color: red;
+}
 </style>
