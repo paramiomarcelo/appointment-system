@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../pages/HomeView.vue'
 
 const routes = [
   {
@@ -10,17 +10,13 @@ const routes = [
   {
     path:'/register',
     name:'register',
-    component: () => import('../views/Register.vue')
+    component: () => import('../pages/Register.vue')
   },
   {
-    path: '/:id',
+    path: '/appointment',
     name: 'app-page',
-    component:() => import(/* webpackChunkName: "daybook-noentry" */ '../components/Appointment.vue'),
-    props:(route) => {
-        return {
-            id: route.params.id
-        }
-    }
+    component:() => import(/* webpackChunkName: "daybook-noentry" */ '../pages/Appointment.vue'),
+ 
 }
   /*{
     path: '/about',

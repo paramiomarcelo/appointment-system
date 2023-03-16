@@ -3,12 +3,12 @@
     <div class="form">
       <div class="loginBox">
         <h1>Log in</h1>
-        <form action="">
+        <form action="" @submit.prevent="submit">
           <label>E-mail</label>
-          <input type="email" placeholder="Enter your email">
+          <input type="email" placeholder="Enter your email" v-model="userEmail">
           <label>Password</label>
-          <input type="password" name="" id="" placeholder="Enter your password">
-          <button class="button">Log in</button>
+          <input type="password" name="" id="" placeholder="Enter your password" v-model="userPw">
+          <button class="button" type="submit">Log in</button>
         </form>
         <router-link :to="{name: 'register'}" class="link">You don't have an account?</router-link>
       </div>
@@ -18,10 +18,34 @@
 
 <script>
 // @ is an alias to /src
-
+import authApi from '../api/authApi'
 
 export default {
- 
+  data(){
+    return {
+      userEmail: '',
+      userPw:''
+    }
+  },
+  methods:{
+    async submit(){
+        const dataToSave = {
+          email: this.userEmail,
+          password: this.userPw,
+          returnSecureToken: true
+        }
+        try {
+          const {data} = await authApi.post(':signInWithPassword',dataToSave)
+          const { idToken, refreshToken } = data
+          localStorage.setItem( 'idToken', idToken )
+          localStorage.setItem( 'refreshToken', refreshToken )
+          this.$router.push({name: 'app-page'})
+        } catch (error) {
+          console.log(error.response)
+        }
+    }
+  }
+  
 }
 </script>
 
