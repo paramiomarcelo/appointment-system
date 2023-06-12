@@ -20,11 +20,12 @@
 // @ is an alias to /src
 import authApi from '../api/authApi'
 
+
 export default {
   data(){
     return {
-      userEmail: '',
-      userPw:''
+      userEmail: '2@g.com',
+      userPw:'123456789'
     }
   },
   methods:{
@@ -36,9 +37,10 @@ export default {
         }
         try {
           const {data} = await authApi.post(':signInWithPassword',dataToSave)
-          const { idToken, refreshToken } = data
+          const { idToken, refreshToken, localId } = data
           localStorage.setItem( 'idToken', idToken )
           localStorage.setItem( 'refreshToken', refreshToken )
+          localStorage.setItem( 'localId', localId )
           this.$router.push({name: 'app-page'})
         } catch (error) {
           console.log(error.response)

@@ -16,6 +16,20 @@ const routes = [
     path: '/appointment',
     name: 'app-page',
     component:() => import(/* webpackChunkName: "daybook-noentry" */ '../pages/Appointment.vue'),
+    children: [
+      {
+          path: '',
+          name: 'no-entry',
+          component: () => import(/* webpackChunkName: "daybook-noentry" */ '../views/NoDate.vue'),
+
+      },
+      {
+        path: '',
+        name: 'entry',
+        component:() => import(/* webpackChunkName: "daybook-noentry" */ '../views/Dates.vue'),
+        
+    }
+    ]
  
 }
   /*{
